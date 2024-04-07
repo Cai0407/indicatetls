@@ -82,6 +82,13 @@ async function updateProtocolDetails(securityInfo, hostname) {
     setCheckmarkIconYellow('popup-primary-icon-hsts');
   }
 
+  const textEch = document.getElementById('popup-primary-ech');
+  textEch.textContent = (securityInfo.usedEch ? browser.i18n.getMessage("yes") : browser.i18n.getMessage("no"));
+  textEch.classList.add(securityInfo.usedEch ? 'color-green' : 'color-black');
+  if(!securityInfo.usedEch) {
+    setCheckmarkIconYellow('popup-primary-icon-ech');
+  }
+
   const buttonPrimary = document.querySelector('#popup-button-primary');
   buttonPrimary.textContent = hostname;
 
@@ -104,7 +111,7 @@ async function updateCertificateDetails(securityInfo) {
   const textCertificateIssuer = document.getElementById('popup-primary-certificate-issuer');
   serverCertificate.issuer.split(',').forEach(function (splittedIssuer) {
     if (splittedIssuer.startsWith('O=')) {
-      issuer = splittedIssuer.replace('O=', '');
+      issuer = splittedIssuer.replace('O=', '').replace('"', '');
       textCertificateIssuer.textContent = issuer;
     }
   });
@@ -154,6 +161,7 @@ async function updateTranslations() {
     translationElementMap.set("popupPrimarySignatureSchema", "popup-primary-title-signature-schema");
     translationElementMap.set("popupPrimaryPfs", "popup-primary-title-pfs");
     translationElementMap.set("popupPrimaryHsts", "popup-primary-title-hsts");
+    translationElementMap.set("popupPrimaryEch", "popup-primary-title-ech");
     translationElementMap.set("popupPrimaryCertificate", "popup-primary-title-certificate");
     translationElementMap.set("popupPrimaryTrusted", "popup-primary-title-certificate-trusted");
     translationElementMap.set("popupPrimaryCommonName", "popup-primary-title-certificate-cn");

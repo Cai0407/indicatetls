@@ -91,6 +91,11 @@
     "description": ""
   },
 
+  "popupPrimaryEch": {
+    "message": "ECH:",
+    "description": ""
+  },
+
   "popupPrimaryCertificate": {
     "message": "Certificate:",
     "description": ""
