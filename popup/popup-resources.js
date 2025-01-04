@@ -23,8 +23,9 @@ function insertTableRow(host, securityInfo) {
     addCell(row, document.createTextNode(securityInfo.protocolVersion), securityInfo.cipherSuite);
     addCell(row, document.createTextNode(securityInfo.keaGroupName ? securityInfo.keaGroupName : 'Unknown'), securityInfo.cipherSuite);
     addCell(row, document.createTextNode(securityInfo.signatureSchemeName), securityInfo.cipherSuite);
-    addCell(row, document.createTextNode(securityInfo.hsts ? 'Yes' : 'No'), securityInfo.cipherSuite);
-    addCell(row, document.createTextNode(securityInfo.isExtendedValidation ? 'Yes' : 'No'), securityInfo.cipherSuite);
+    addCell(row, document.createTextNode(securityInfo.hsts ? browser.i18n.getMessage("yes") : browser.i18n.getMessage("no")), securityInfo.cipherSuite);
+    addCell(row, document.createTextNode(securityInfo.usedEch ? browser.i18n.getMessage("yes") : browser.i18n.getMessage("no")), securityInfo.cipherSuite);
+    addCell(row, document.createTextNode(securityInfo.isExtendedValidation ? browser.i18n.getMessage("yes") : browser.i18n.getMessage("no")), securityInfo.cipherSuite);
 
     i18n_test = browser.i18n.getMessage("popupRunTest");
     addCell(row, createLink(i18n_test, 'https://www.ssllabs.com/ssltest/analyze.html?hideResults=on&d=' + host), '');
@@ -38,7 +39,7 @@ function clearTable() {
     const i18n_protocol = browser.i18n.getMessage("popupTitleProtocol");
     const i18n_kex = browser.i18n.getMessage("popupTitleKeyExchange");
     const i18n_signature = browser.i18n.getMessage("popupTitleSignature");
-    var header = '<tr><th>' + i18n_host + '</th><th>' + i18n_protocol + '</th><th>' + i18n_kex + '</th><th>' + i18n_signature + '</th><th>HSTS</th><th>EV</th><th>SSL Labs</th></tr>';
+    var header = '<tr><th>' + i18n_host + '</th><th>' + i18n_protocol + '</th><th>' + i18n_kex + '</th><th>' + i18n_signature + '</th><th>HSTS</th><th>ECH</th><th>EV</th><th>SSL Labs</th></tr>';
     table.innerHTML = header;
 
 }

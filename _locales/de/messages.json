@@ -80,6 +80,11 @@
     "description": ""
   },
 
+  "popupPrimaryEch": {
+    "message": "ECH:",
+    "description": ""
+  },
+
   "popupPrimaryCertificate": {
     "message": "Zertifikat:",
     "description": ""
